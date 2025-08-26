@@ -1,0 +1,9 @@
+sub Store_Tables
+let vNoOfTables = NoOfTables();
+Trace vNoOfTables: $(vNoOfTables);
+for i = 0 to $(vNoOfTables)-1
+let vTablename = TableName($(i));
+Trace vTablename: $(vTablename);
+store $(vTablename) into [$(vQvdpath)\$(vTablename).qvd](QVD);
+next i 
+End Sub
