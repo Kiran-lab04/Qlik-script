@@ -1,0 +1,9 @@
+sub Drop_Tables
+let vNoOfTables = NoOfTables();
+Trace vNoOfTables: $(vNoOfTables);
+for i = 0 to $(vNoOfTables)-1
+let vTablename = TableName($(i));
+Trace vTablename: $(vTablename);
+Drop Table $(vTablename) ;
+next i 
+End Sub
