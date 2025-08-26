@@ -1,0 +1,32 @@
+//Master Calandar
+Sub MasterCalendar(DateField)
+Trace DateField: $(DateField);
+Temp_Date:
+Load
+Fieldvalue('$(DateField)',RecNo()) as Date
+Autogenerate Fieldvaluecount('$(DateField)');
+NoConcatenate
+Temp_calendar:
+Load 
+	MinDate+IterNo()-1 as Date
+while
+	MinDate+IterNo()-1<=MaxDate;
+Load 
+	Max(Date) as MaxDate
+	,Min(Date) as MinDate
+Resident Temp_Date;
+Drop Table Temp_Date;
+Master_Calendar:
+Load
+	Date
+	,Date as $(DateField)   
+	,Month(Date) as Month
+	,Year(Date) as Year
+	,Date(MonthStart(Date),'MMM YYYY') as MonthYear
+	,'Q'& Floor(Month(Date)/3) as Quarter
+	,Day(Date) AS Day
+	,WeekDay(Date) AS WeekDay
+Resident 
+Temp_calendar;
+Drop Table Temp_calendar;
+End Sub
